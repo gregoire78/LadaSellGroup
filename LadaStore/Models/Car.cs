@@ -12,11 +12,13 @@ namespace LadaStore.Models
         [Required]
         public string CarType { get; set; }
 
-        [ForeignKey("User")]
         public string UserID { get; set; }
+        [ForeignKey("UserID")]
+        public User User { get; set; }
 
-        [ForeignKey("CarModels")]
-        public string CarModelID { get; set; }
+        public int CarModelID { get; set; }
+        [ForeignKey("CarModelID")]
+        public CarModel CarModel { get; set; }
 
         [Required]
         public string Year { get; set; }

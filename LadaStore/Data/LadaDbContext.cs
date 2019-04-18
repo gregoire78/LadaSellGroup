@@ -14,5 +14,11 @@ namespace LadaStore.Data
         {
         }
 
+        public DbSet<Car> Cars { get; set; }
+
+        public DbSet<CarModel> CarModels { get; set; }
+
+        public DbSet<CarBrand> CarBrands { get; set; }
+
     }
 }

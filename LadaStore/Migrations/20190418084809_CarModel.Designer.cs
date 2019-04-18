@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LadaStore.Migrations
 {
     [DbContext(typeof(LadaDbContext))]
-    [Migration("20190329150048_initial user")]
-    partial class initialuser
+    [Migration("20190418084809_CarModel")]
+    partial class CarModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,70 @@ namespace LadaStore.Migrations
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("LadaStore.Models.Car", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarModelID");
+
+                    b.Property<string>("CarType")
+                        .IsRequired();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<double>("Kilometers");
+
+                    b.Property<string>("Picture")
+                        .IsRequired();
+
+                    b.Property<string>("UserID");
+
+                    b.Property<string>("Year")
+                        .IsRequired();
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarModelID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("LadaStore.Models.CarBrand", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BrandName");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CarBrands");
+                });
+
+            modelBuilder.Entity("LadaStore.Models.CarModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarBrandID");
+
+                    b.Property<string>("ModelName")
+                        .IsRequired();
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarBrandID");
+
+                    b.ToTable("CarModels");
+                });
 
             modelBuilder.Entity("LadaStore.Models.User", b =>
                 {
@@ -194,6 +258,26 @@ namespace LadaStore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("LadaStore.Models.Car", b =>
+                {
+                    b.HasOne("LadaStore.Models.CarModel", "CarModel")
+                        .WithMany()
+                        .HasForeignKey("CarModelID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("LadaStore.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("LadaStore.Models.CarModel", b =>
+                {
+                    b.HasOne("LadaStore.Models.CarBrand", "CarBrands")
+                        .WithMany()
+                        .HasForeignKey("CarBrandID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

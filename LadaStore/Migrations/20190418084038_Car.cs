@@ -2,7 +2,7 @@
 
 namespace LadaStore.Migrations
 {
-    public partial class initialuser : Migration
+    public partial class Car : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
