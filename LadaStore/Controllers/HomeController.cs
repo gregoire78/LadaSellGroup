@@ -5,14 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LadaStore.Models;
+using LadaStore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace LadaStore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public IActionResult Index()
+        public HomeController(LadaDbContext context) : base(context)
         {
-            return View();
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Cars.ToListAsync());
         }
 
         public IActionResult Privacy()
