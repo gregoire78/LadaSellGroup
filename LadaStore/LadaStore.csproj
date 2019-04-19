@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Home\**" />
+    <Content Remove="Controllers\Home\**" />
+    <EmbeddedResource Remove="Controllers\Home\**" />
+    <None Remove="Controllers\Home\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20190329150048_initial user.cs" />
     <Compile Remove="Migrations\20190329150048_initial user.Designer.cs" />
     <Compile Remove="Migrations\20190418075921_InitialCreate.cs" />
