@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@model IEnumerable<LadaStore.Models.User>
+
+@inject UserManager<User> userManager;
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@foreach (var item in Model)
+{
+    System.Diagnostics.Debug.WriteLine(item);
+    if (@userManager.GetUserName(User) == item.Email)
+    {
+        <p>Nom : @Html.DisplayFor(modelItem => item.Lastname)</p>
+        @*<p>Prénom : @Html.DisplayFor(modelItem => item.Firstname)</p>
+        <p>E-mail : @Html.DisplayFor(modelItem => item.Email)</p>
+        <p>Téléphone : @Html.DisplayFor(modelItem => item.PhoneNumber)</p>
+        <p>Adresse : @Html.DisplayFor(modelItem => item.Address)</p>
+        <p>SIRET : @Html.DisplayFor(modelItem => item.Siret)</p>*@
+    }
+}
+
+

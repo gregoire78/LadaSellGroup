@@ -1,0 +1,17 @@
+Membre du groupe et tâches assignés à chacun au début du projet :
+
+- JONCOUR Grégoire
+Page d'accueil avec la liste des voitures à vendre (les annonces)
+Création d'annonces pour les professionnels (Ajout de nouvelles voitures)
+Tests unitaires
+
+- LOPEZ Raphaël
+Authentification (Connexion et Inscription)
+Token
+Tests unitaires
+
+- PERIC Ivan
+Models
+Base de donnée sur Azure
+Page de profile (Affichage et Edit)
+Tests unitaires
