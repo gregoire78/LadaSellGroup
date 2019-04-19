@@ -11,5 +11,12 @@
 <h2>@Html.DisplayNameFor(model => model.CarType)</h2>
 @foreach (var item in Model)
 {
-    <p>@Html.DisplayFor(modelItem => item.CarType)</p>
+    <div class="card" style="width: 18rem;">
+        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b8/Lada-logo.png/800px-Lada-logo.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.CarType)</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
 }
