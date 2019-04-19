@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BetEtMechant.Models;
 using LadaStore.Data;
 using LadaStore.Models;
 using Microsoft.AspNetCore.Identity;
@@ -55,6 +56,46 @@ namespace LadaStore.Controllers
                 }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var resultat = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                if (resultat.Succeeded)
+                {
+                    if (!string.IsNullOrWhiteSpace(returnUrl))
+                        return Redirect(returnUrl);
+                    return RedirectToAction("index", "home");
+                }
+
+                if (resultat.IsLockedOut)
+                {
+                    ModelState.AddModelError("", "Le compte est bloqué.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email / mot de passe invalide");
+                }
+
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("index", "home");
         }
     }
 }
