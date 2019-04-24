@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LadaStore.Class.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -41,6 +42,7 @@ namespace LadaStore.Models
 
         [Display(Name="Siret")]
         [DataType(DataType.Text)]
+        [Siret(18, ErrorMessage = "Le sriet doit avoir {1} chiffres")]
         public string Siret { get; set; }
 
     }
