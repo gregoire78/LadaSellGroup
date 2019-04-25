@@ -32,7 +32,7 @@ namespace LadaStore.Controllers
             {
                 _context.Add(car);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["CarModelID"] = new SelectList(_context.CarModels, "ID", "ModelName", car.CarModelID);
             return View(car);

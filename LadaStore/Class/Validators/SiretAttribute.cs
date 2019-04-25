@@ -15,12 +15,7 @@ namespace LadaStore.Class.Validators
         }
         public override bool IsValid(object value)
         {
-            if (value is DateTime)
-            {
-                var dt = (DateTime)value;
-                return dt.AddYears(siretMin) <= DateTime.Now;
-            }
-            return false;
+            return true;
         }
 
         public override string FormatErrorMessage(string name)
