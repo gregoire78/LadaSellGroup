@@ -13,13 +13,6 @@
     <None Remove="Controllers\Home\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\20190329150048_initial user.cs" />
-    <Compile Remove="Migrations\20190329150048_initial user.Designer.cs" />
-    <Compile Remove="Migrations\20190418075921_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190418075921_InitialCreate.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

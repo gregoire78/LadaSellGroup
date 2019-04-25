@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -30,6 +31,6 @@ namespace LadaStore.Models
         public string Description { get; set; }
 
         [Required]
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
     }
 }
