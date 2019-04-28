@@ -15,7 +15,7 @@ namespace LadaStore.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -35,7 +35,7 @@ namespace LadaStore.Migrations
 
                     b.Property<double>("Kilometers");
 
-                    b.Property<string>("Picture")
+                    b.Property<byte[]>("Picture")
                         .IsRequired();
 
                     b.Property<string>("UserID");
