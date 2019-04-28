@@ -1,25 +1,25 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 
-@model IEnumerable<LadaStore.Models.User>
-
+@inject SignInManager<User> signInManager;
 @inject UserManager<User> userManager;
 
 @{
     ViewData["Title"] = "Profile";
 }
 
-@foreach (var item in Model)
+
+@if (signInManager.IsSignedIn(User))
 {
-    System.Diagnostics.Debug.WriteLine(item);
-    if (@userManager.GetUserName(User) == item.Email)
-    {
-        <p>Nom : @Html.DisplayFor(modelItem => item.Lastname)</p>
-        @*<p>Prénom : @Html.DisplayFor(modelItem => item.Firstname)</p>
-        <p>E-mail : @Html.DisplayFor(modelItem => item.Email)</p>
-        <p>Téléphone : @Html.DisplayFor(modelItem => item.PhoneNumber)</p>
-        <p>Adresse : @Html.DisplayFor(modelItem => item.Address)</p>
-        <p>SIRET : @Html.DisplayFor(modelItem => item.Siret)</p>*@
-    }
+    <p>Email : @userManager.GetUserName(User)</p>
+    <p>Nom : @userManager.GetUserAsync(User).Result.Lastname</p>
+    <p>Prénom : @userManager.GetUserAsync(User).Result.Firstname</p>
+    <p>Adresse : @userManager.GetUserAsync(User).Result.Address</p>
+    <p>Siret : @userManager.GetUserAsync(User).Result.Siret</p>
 }
-
-
+else
+{
+    <form class="form-inline my-2 my-lg-0">
+        <a asp-action="register" asp-controller="account" class="btn btn-light">S'inscrire</a>
+        <a asp-action="login" asp-controller="account" class="btn btn-dark">Connexion</a>
+    </form>
+}

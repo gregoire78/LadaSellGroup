@@ -5,9 +5,11 @@
 
 @if (signInManager.IsSignedIn(User))
 {
+
     <span class="navbar-text">
-        Bonjour @userManager.GetUserName(User)
+        Bonjour @userManager.GetUserAsync(User).Result.Firstname&nbsp;
     </span>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index">Profile</a>
     <a asp-action="logout" asp-controller="account" class="btn btn-dark">Déconnexion</a>
 }
 else
