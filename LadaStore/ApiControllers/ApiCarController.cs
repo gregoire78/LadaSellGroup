@@ -13,10 +13,10 @@ namespace LadaStore.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarController : ControllerBase
+    public class ApiCarController : ControllerBase
     {
         private readonly LadaDbContext _context;
-        public CarController(LadaDbContext context)
+        public ApiCarController(LadaDbContext context)
         {
             _context = context;
         }

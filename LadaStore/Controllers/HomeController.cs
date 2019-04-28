@@ -7,15 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 using LadaStore.Models;
 using LadaStore.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LadaStore.Controllers
 {
+    
     public class HomeController : BaseController
     {
         public HomeController(LadaDbContext context) : base(context)
         {
         }
-
+ 
         public async Task<IActionResult> Index()
         {
             return View(await _context.Cars.ToListAsync());

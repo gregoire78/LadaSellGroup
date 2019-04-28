@@ -8,15 +8,21 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<a asp-action="Add" asp-controller="Car">Ajouter une voiture</a>
+
 <h2>@Html.DisplayNameFor(model => model.CarType)</h2>
+<div class="row">
 @foreach (var item in Model)
 {
-    <div class="card" style="width: 18rem;">
-        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b8/Lada-logo.png/800px-Lada-logo.png" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">@Html.DisplayFor(modelItem => item.CarType)</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+            <img src="data:image;base64,@Convert.ToBase64String(item.Picture)" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.CarType)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Kilometers) km - @Html.DisplayFor(modelItem => item.Year) - @Html.DisplayFor(modelItem => item.CarModel)</p>
+            </div>
         </div>
     </div>
 }
+</div>

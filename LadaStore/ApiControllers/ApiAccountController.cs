@@ -17,16 +17,16 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace LadaStore.ApiControllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class ApiAccountController : ControllerBase
     {
         private readonly LadaDbContext _context;
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
-        public AccountController(LadaDbContext context, SignInManager<User> signInManager, UserManager<User> userManager, IConfiguration configuration)
+        public ApiAccountController(LadaDbContext context, SignInManager<User> signInManager, UserManager<User> userManager, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
@@ -35,6 +35,7 @@ namespace LadaStore.ApiControllers
         }
 
         [HttpPost]
+        [Route("token")]
         public async Task<object> Login([FromBody] LoginDto model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
