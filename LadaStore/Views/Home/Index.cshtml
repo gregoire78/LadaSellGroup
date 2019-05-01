@@ -1,4 +1,6 @@
-﻿@model IEnumerable<LadaStore.Models.Car>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> signInManager;
+@model IEnumerable<LadaStore.Models.Car>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,21 +10,25 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<a asp-action="Add" asp-controller="Car">Ajouter une voiture</a>
+
+@if (signInManager.IsSignedIn(User))
+{
+    <a asp-action="Add" asp-controller="Car">Ajouter une voiture</a>
+}
 
 <h2>@Html.DisplayNameFor(model => model.CarType)</h2>
 <div class="row">
-@foreach (var item in Model)
-{
-    <div class="col-sm">
-        <div class="card" style="width: 18rem;">
-            <img src="data:image;base64,@Convert.ToBase64String(item.Picture)" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.CarType)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.Kilometers) km - @Html.DisplayFor(modelItem => item.Year) - @Html.DisplayFor(modelItem => item.CarModel)</p>
+    @foreach (var item in Model)
+    {
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <img src="data:image;base64,@Convert.ToBase64String(item.Picture)" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.CarType)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Kilometers) km - @Html.DisplayFor(modelItem => item.Year) - @Html.DisplayFor(modelItem => item.CarModel)</p>
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
 </div>
