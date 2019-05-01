@@ -1,19 +1,19 @@
 using Xunit;
-using LadaStore.Controllers;
+using LadaStore.Controllers.HomeController;
 using System.Web.Mvc;
 using LadaStore.Data;
 using System;
 
-namespace LadaStoreTest.Controllers
+namespace HomeController.Tests
 {
-    public class HomeControllerTest
+    public class HomeControllerTests
     {
         [Fact]
         public void TestPrivacyView()
         {
-            HomeController controller = new HomeController(null);
+            HomeController controller = new HomeController();
             ViewResult result = controller.Privacy() as ViewResult;
-            Assert.Null(result);
+            Assert.Equal("Privacy", result);
         }
     }
 }
